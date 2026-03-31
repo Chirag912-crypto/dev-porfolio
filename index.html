@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Makvana | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        themeDark: '#1a1f2b',
+                        themeCard: '#323b4c',
+                        themeAccent: '#c6c8d6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background-color: #1a1f2b; 
+            color: #e2e4ed;
+        }
+
+        /* Smooth Glassmorphism Cards */
+        .glass-panel {
+            background: linear-gradient(145deg, rgba(50, 59, 76, 0.4) 0%, rgba(26, 31, 43, 0.6) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(198, 200, 214, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(198, 200, 214, 0.4);
+            box-shadow: 0 10px 30px rgba(198, 200, 214, 0.1);
+            transform: translateY(-4px);
+        }
+
+        /* Ambient Glow Behind Hero */
+        .ambient-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(198, 200, 214, 0.08) 0%, transparent 70%);
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Scroll Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Staggered delay for grid items */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+    </style>
+</head>
+<body class="antialiased selection:bg-themeAccent selection:text-themeDark">
+
+    <nav class="fixed w-full z-50 bg-themeDark/90 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center relative">
+            
+            <a href="#" class="font-heading text-themeAccent text-2xl md:text-3xl font-bold tracking-wide hover:opacity-80 transition duration-300">
+                Dev Makvana
+            </a>
+            
+            <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+                <a href="#about" class="text-gray-400 hover:text-themeAccent transition duration-300">About</a>
+                <a href="#experience" class="text-gray-400 hover:text-themeAccent transition duration-300">Experience</a>
+                <a href="#education" class="text-gray-400 hover:text-themeAccent transition duration-300">Education</a>
+                <a href="#skills" class="text-gray-400 hover:text-themeAccent transition duration-300">Skills</a>
+            </div>
+
+            <button id="menu-btn" onclick="toggleMenu()" class="md:hidden text-gray-400 hover:text-themeAccent focus:outline-none transition-colors duration-300 z-50">
+                <i id="menu-icon" class="fas fa-bars text-2xl transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden flex-col bg-themeDark border-b border-white/10 w-full absolute top-full left-0 py-4 shadow-2xl transition-all duration-300 origin-top">
+            <a href="#about" onclick="toggleMenu()" class="block px-6 py-3 text-gray-300 hover:text-themeDark hover:bg-themeAccent text-lg font-medium tracking-wide transition duration-300">About</a>
+            <a href="#experience" onclick="toggleMenu()" class="block px-6 py-3 text-gray-300 hover:text-themeDark hover:bg-themeAccent text-lg font-medium tracking-wide transition duration-300">Experience</a>
+            <a href="#education" onclick="toggleMenu()" class="block px-6 py-3 text-gray-300 hover:text-themeDark hover:bg-themeAccent text-lg font-medium tracking-wide transition duration-300">Education</a>
+            <a href="#skills" onclick="toggleMenu()" class="block px-6 py-3 text-gray-300 hover:text-themeDark hover:bg-themeAccent text-lg font-medium tracking-wide transition duration-300">Skills & Languages</a>
+        </div>
+    </nav>
+
+    <header class="relative pt-40 pb-24 px-6 text-center overflow-hidden flex flex-col items-center justify-center min-h-[85vh]">
+        <div class="ambient-glow"></div>
+        <div class="relative z-10 max-w-4xl mx-auto fade-up">
+            <h2 class="text-themeAccent font-medium tracking-widest uppercase mb-4 text-sm md:text-base"> Sales Professional</h2>
+            <h1 class="font-heading text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight tracking-tight">
+                Hi, I'm <span class="text-themeAccent">Dev Makvana</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+                A dedicated telecom professional currently driving grassroots sales and brand engagement at Bharti Airtel Limited, with a strong foundational background from Jio.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-5">
+                <a href="#experience" class="px-8 py-3 w-full sm:w-auto bg-themeAccent text-themeDark font-semibold rounded-full hover:bg-white transition duration-300">
+                    Explore My Experience
+                </a>
+                <a href="mailto:Devmakvana23044@gmail.com" class="px-8 py-3 w-full sm:w-auto bg-transparent border border-themeAccent text-themeAccent font-medium rounded-full hover:bg-themeAccent hover:text-themeDark transition duration-300">
+                    <i class="fas fa-envelope mr-2"></i> Get in Touch
+                </a>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 mt-12 text-sm text-gray-400">
+                <span class="flex items-center gap-2 bg-themeCard/50 px-5 py-2 rounded-full border border-white/5"><i class="fas fa-map-marker-alt text-themeAccent"></i> Porbandar, Gujarat</span>
+                <a href="tel:+918320358463" class="flex items-center gap-2 bg-themeCard/50 px-5 py-2 rounded-full border border-white/5 hover:border-themeAccent hover:text-themeAccent transition duration-300 cursor-pointer">
+                    <i class="fas fa-phone text-themeAccent"></i> +91 8320358463
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pb-24 space-y-32 relative z-10">
+        
+        <section id="about" class="scroll-mt-32 fade-up">
+            <div class="flex items-center gap-6 mb-12">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-white">Professional Summary</h2>
+                <div class="h-[1px] bg-gradient-to-r from-themeAccent/50 to-transparent flex-grow"></div>
+            </div>
+            <div class="glass-panel p-8 md:p-10 rounded-3xl">
+                <p class="text-gray-300 leading-relaxed text-lg font-light">
+                    I am a proactive and results-driven sales professional with proven experience in the highly competitive telecommunications sector. Currently serving as a Promoter at Bharti Airtel Limited, I previously built a strong foundation during my tenure as a Field Sales Executive at Jio. I excel at driving grassroots sales, managing territory operations, and ensuring high customer satisfaction. I am a quick learner who leverages strong communication and problem-solving skills to meet targets and lead initiatives in dynamic retail environments.
+                </p>
+            </div>
+        </section>
+
+        <section id="experience" class="scroll-mt-32">
+            <div class="flex items-center gap-6 mb-12 fade-up">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-white">Work Experience</h2>
+                <div class="h-[1px] bg-gradient-to-r from-themeAccent/50 to-transparent flex-grow"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between fade-up delay-100">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="font-heading text-2xl font-bold text-white mb-1">Promoter</h3>
+                                <p class="text-themeAccent font-medium text-sm tracking-wide uppercase">Bharti Airtel Limited</p>
+                            </div>
+                            <span class="text-themeDark font-semibold text-xs bg-themeAccent px-3 py-1 rounded-full">Current</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-300 font-light text-sm md:text-base mt-4">
+                            <li class="flex items-start gap-3"><i class="fas fa-chevron-right text-themeAccent mt-1 text-xs"></i> Actively driving direct sales operations and expanding the local subscriber base.</li>
+                            <li class="flex items-start gap-3"><i class="fas fa-chevron-right text-themeAccent mt-1 text-xs"></i> Implementing direct marketing strategies and executing promotional activities.</li>
+                            <li class="flex items-start gap-3"><i class="fas fa-chevron-right text-themeAccent mt-1 text-xs"></i> Enhancing brand visibility and maintaining strong customer relationships on the ground.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between fade-up delay-200">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="font-heading text-2xl font-bold text-white mb-1">Field Sales Executive (FSE)</h3>
+                                <p class="text-themeAccent font-medium text-sm tracking-wide uppercase">Reliance Jio</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-sm font-light mb-4"><i class="far fa-clock mr-2"></i>Previous Role</p>
+                        <ul class="space-y-3 text-gray-400 font-light text-sm md:text-base">
+                            <li class="flex items-start gap-3"><i class="fas fa-chevron-right text-themeAccent mt-1 text-xs"></i> Spearheaded primary and secondary sales targets within the designated territory.</li>
+                            <li class="flex items-start gap-3"><i class="fas fa-chevron-right text-themeAccent mt-1 text-xs"></i> Managed retailer onboarding, activation drives, and Mobile Number Portability (MNP).</li>
+                            <li class="flex items-start gap-3"><i class="fas fa-chevron-right text-themeAccent mt-1 text-xs"></i> Consistently met acquisition targets through effective local networking.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="scroll-mt-32">
+            <div class="flex items-center gap-6 mb-10 fade-up">
+                <h2 class="font-heading text-3xl font-bold text-white">Education</h2>
+                <div class="h-[1px] bg-gradient-to-r from-themeAccent/50 to-transparent flex-grow"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-panel p-6 rounded-2xl fade-up delay-100">
+                    <h4 class="text-themeAccent font-semibold text-lg mb-1">Bachelor of Commerce</h4>
+                    <p class="text-white mb-2 font-medium">Undergraduate Degree</p>
+                    <p class="text-gray-400 text-sm font-light"><i class="far fa-calendar mr-1"></i> 2021 - March 2024</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl fade-up delay-200">
+                    <h4 class="text-themeAccent font-semibold text-lg mb-1">Higher Secondary (HSC)</h4>
+                    <p class="text-white mb-2 font-medium">Completed</p>
+                    <p class="text-gray-400 text-sm mb-1">Score: 42.57%</p>
+                    <p class="text-gray-400 text-sm font-light"><i class="far fa-calendar mr-1"></i> May 2021</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl fade-up delay-300">
+                    <h4 class="text-themeAccent font-semibold text-lg mb-1">Secondary School (SSC)</h4>
+                    <p class="text-white mb-2 font-medium">Completed</p>
+                    <p class="text-gray-400 text-sm mb-1">Score: 51.33%</p>
+                    <p class="text-gray-400 text-sm font-light"><i class="far fa-calendar mr-1"></i> March 2019</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="scroll-mt-32">
+            <div class="flex items-center gap-6 mb-12 fade-up">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-white">Skills & Languages</h2>
+                <div class="h-[1px] bg-gradient-to-r from-themeAccent/50 to-transparent flex-grow"></div>
+            </div>
+            
+            <div class="glass-panel p-10 rounded-3xl grid grid-cols-1 md:grid-cols-2 gap-12 fade-up">
+                <div>
+                    <h3 class="text-themeAccent text-sm font-medium tracking-widest uppercase mb-6"><i class="fas fa-star mr-2"></i>Core Strengths</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-themeCard border border-white/10 text-gray-300 px-5 py-2.5 rounded-full text-sm font-medium hover:border-themeAccent hover:text-white transition duration-300 cursor-default">Communication</span>
+                        <span class="bg-themeCard border border-white/10 text-gray-300 px-5 py-2.5 rounded-full text-sm font-medium hover:border-themeAccent hover:text-white transition duration-300 cursor-default">Leadership</span>
+                        <span class="bg-themeCard border border-white/10 text-gray-300 px-5 py-2.5 rounded-full text-sm font-medium hover:border-themeAccent hover:text-white transition duration-300 cursor-default">Problem Solving</span>
+                        <span class="bg-themeCard border border-white/10 text-gray-300 px-5 py-2.5 rounded-full text-sm font-medium hover:border-themeAccent hover:text-white transition duration-300 cursor-default">Time Management</span>
+                        <span class="bg-themeCard border border-white/10 text-gray-300 px-5 py-2.5 rounded-full text-sm font-medium hover:border-themeAccent hover:text-white transition duration-300 cursor-default">Creativity</span>
+                        <span class="bg-themeCard border border-white/10 text-gray-300 px-5 py-2.5 rounded-full text-sm font-medium hover:border-themeAccent hover:text-white transition duration-300 cursor-default">Quick Learner</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-themeAccent text-sm font-medium tracking-widest uppercase mb-6"><i class="fas fa-globe mr-2"></i>Languages Known</h3>
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center gap-4 bg-themeCard/50 p-4 rounded-2xl w-full border border-white/5 hover:border-themeAccent/50 transition duration-300">
+                            <div class="bg-white/10 w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold text-sm">GU</div>
+                            <span class="text-gray-200 font-medium text-base">Gujarati <span class="text-themeAccent text-sm font-light ml-2">| Native</span></span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-themeCard/50 p-4 rounded-2xl w-full border border-white/5 hover:border-themeAccent/50 transition duration-300">
+                            <div class="bg-white/10 w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold text-sm">HI</div>
+                            <span class="text-gray-200 font-medium text-base">Hindi <span class="text-themeAccent text-sm font-light ml-2">| Proficient</span></span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-themeCard/50 p-4 rounded-2xl w-full border border-white/5 hover:border-themeAccent/50 transition duration-300">
+                            <div class="bg-white/10 w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold text-sm">EN</div>
+                            <span class="text-gray-200 font-medium text-base">English <span class="text-themeAccent text-sm font-light ml-2">| Fluent</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-white/5 bg-[#141822] py-12 text-center relative z-10">
+        <div class="flex justify-center gap-6 mb-8">
+            <a href="https://www.linkedin.com/in/dev-makvana-7784942a0?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="w-12 h-12 rounded-full bg-themeCard border border-white/10 flex items-center justify-center text-gray-400 hover:bg-themeAccent hover:text-themeDark hover:border-themeAccent transition duration-300 shadow-lg">
+                <i class="fab fa-linkedin-in text-lg"></i>
+            </a>
+            <a href="mailto:Devmakvana23044@gmail.com" class="w-12 h-12 rounded-full bg-themeCard border border-white/10 flex items-center justify-center text-gray-400 hover:bg-themeAccent hover:text-themeDark hover:border-themeAccent transition duration-300 shadow-lg">
+                <i class="fas fa-envelope text-lg"></i>
+            </a>
+        </div>
+        <p class="font-heading text-themeAccent text-xl font-bold mb-3 tracking-wider">Dev Makvana</p>
+        <p class="text-gray-500 text-sm font-light">&copy; 2026 Dev Makvana. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                icon.style.transform = 'rotate(90deg)';
+            }
+        }
+
+        // Scroll Animations (Intersection Observer)
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            document.querySelectorAll(".fade-up").forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
